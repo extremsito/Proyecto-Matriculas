@@ -1,0 +1,146 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilos generales */
+body {
+    background-color: #f4f4f4; /* Color de fondo más suave */
+    color: #333; /* Color de texto más oscuro para mejor legibilidad */
+    padding-top: 60px; /* Espacio para el menú fijo */
+}
+
+/* ====== MENÚ ====== */
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000; /* Color de fondo del menú */
+    color: white;
+    padding: 15px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: background 0.3s ease-in-out;
+    z-index: 1000; /* Asegura que el menú esté por encima de otros elementos */
+}
+
+.logo {
+    font-size: 24px; /* Aumentado para mayor visibilidad */
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-links li:hover {
+    transform: scale(1.1); /* Efecto de hover */
+}
+
+.nav-links a:hover {
+    color: #aaa; /* Color de texto al pasar el ratón */
+}
+
+/* Botón menú hamburguesa */
+.hamburger {
+    display: none; /* Oculto por defecto */
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Cambia el fondo del menú al hacer scroll */
+.menu.scrolled {
+    background-color: #333; /* Color más claro al hacer scroll */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Oculto por defecto en móviles */
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Espacio debajo del menú */
+        left: 0;
+        width: 100%;
+        background: black;
+        padding: 10px 0;
+    }
+
+    .nav-links.active {
+        display: flex; /* Muestra el menú al activarse */
+    }
+
+    .nav-links li {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .hamburger {
+        display: block; /* Muestra el botón hamburguesa en móviles */
+    }
+}
+
+/* Estilos de botones */
+button {
+    background: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+button:hover {
+    background: #333; /* Color de fondo al pasar el ratón */
+    transform: scale(1.05); /* Efecto de aumento al pasar el ratón */
+}
+
+/* Estilos de formularios */
+input {
+    padding: 10px; /* Aumentado para mayor comodidad */
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Bordes redondeados */
+    transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+    border-color: black; /* Color del borde al enfocar */
+    outline: none; /* Elimina el contorno por defecto */
+}
+
+/* Animaciones para elementos de matrícula */
+.matricula-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-in-out forwards; /* Animación de entrada */
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
