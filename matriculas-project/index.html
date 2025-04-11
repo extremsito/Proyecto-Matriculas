@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Matrículas</title>
+    <title>Login</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <header>
         <nav class="menu">
-            <div class="logo">MATRÍCULAS</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="add.html">Añadir Matrícula</a></li>
-                <li><a href="login.html">Login</a></li>
-            </ul>
-            <div class="hamburger">&#9776;</div>
+            <div class="logo-container">
+                <img src="./imgs/ESDI_250x138.png" alt="150" width="75" class="logo-img">
+            </div>
+    
+            <div class="menu-title">MATRÍCULAS</div>
+        
+            <a class="welcome">Bienvenido!</a>
         </nav>
     </header>
-
     <main>
-        <h1>Lista de Matrículas</h1>
-        <input type="text" id="search" placeholder="Buscar matrícula...">
-        <div id="matricula-list"></div>
-        <div id="matriculas-container"></div>
+        <h1>Iniciar Sesión</h1>
+        <form id="login-form">
+            <input type="text" id="login-usuario" placeholder="Usuario" required>
+            <input type="password" id="login-password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
     </main>
 
     <script src="script.js"></script>

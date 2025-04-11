@@ -3,50 +3,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const hamburger = document.querySelector(".hamburger");
     const navLinks = document.querySelector(".nav-links");
 
-    // Cambiar el estilo del menú al hacer scroll
     if (menu) {
         window.addEventListener("scroll", function () {
             menu.classList.toggle("scrolled", window.scrollY > 50);
         });
     }
 
-    // Menú hamburguesa para pantallas pequeñas
     if (hamburger && navLinks) {
         hamburger.addEventListener("click", function () {
-            if (navLinks.classList.contains("active")) {
-                navLinks.classList.remove("active");
-            } else {
-                navLinks.classList.remove("active"); // Reinicio por si acaso
-                void navLinks.offsetWidth; // Truco para reiniciar la animación
-                navLinks.classList.add("active");
-            }
-        });
-
-        // Cerrar el menú al hacer clic en un enlace
-        navLinks.addEventListener("click", function (e) {
-            if (e.target.tagName === "A") {
-                navLinks.classList.remove("active");
-            }
+            navLinks.classList.toggle("active");
         });
     }
-
-        // Cerrar menú al hacer clic fuera
-    document.addEventListener("click", function (e) {
-        if (
-            navLinks.classList.contains("active") &&
-            !navLinks.contains(e.target) &&
-            !hamburger.contains(e.target)
-        ) {
-            navLinks.classList.remove("active");
-        }
-    });
-
-    // Cerrar menú al hacer scroll
-    window.addEventListener("scroll", function () {
-        if (navLinks.classList.contains("active")) {
-            navLinks.classList.remove("active");
-        }
-    });
 
     const matriculaList = document.getElementById("matricula-list");
 
@@ -331,55 +298,6 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
-
-    // Logout con SweetAlert
-    const logoutBtn = document.getElementById("logout");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", function (e) {
-            e.preventDefault(); // Previene la navegación directa
-
-            Swal.fire({
-                title: '¿Cerrar sesión?',
-                text: '¿Estás seguro de que deseas salir?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: 'Sí, salir',
-                cancelButtonText: 'Cancelar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fetch("logout.php")
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Sesión cerrada',
-                                    text: 'Has cerrado sesión correctamente.',
-                                    confirmButtonText: 'Ok'
-                                }).then(() => {
-                                    window.location.href = "index.html";
-                                });
-                            } else {
-                                Swal.fire({
-                                    icon: 'error',
-                                    title: 'Error',
-                                    text: 'No se pudo cerrar la sesión.'
-                                });
-                            }
-                        })
-                        .catch(error => {
-                            console.error("Error en el proceso de logout:", error);
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Error del servidor',
-                                text: 'Ocurrió un error al cerrar sesión.'
-                            });
-                        });
-                }
-            });
-        });
-    }
-
 
     fetch("session.php")
     .then(response => response.json())
